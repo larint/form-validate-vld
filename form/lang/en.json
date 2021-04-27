@@ -1,0 +1,65 @@
+{
+    "katakana": "text katakana is invalid.",
+    "url": "The :attribute is not a valid URL.",
+    "alpha": "The :attribute may only contain letters.",
+    "alpha_dash": "The :attribute may only contain letters, numbers, and dashes.",
+    "alpha_num": "The :attribute may only contain letters and numbers.",
+    "array": "The :attribute must be an array.",
+    "between":
+    {
+        "number": "The :attribute must be between :min and :max.",
+        "file": "The :attribute must be between :min and :max kilobytes.",
+        "text": "The :attribute must be between :min and :max characters.",
+        "array": "The :attribute must have between :min and :max items.",
+        "password": "The :attribute must be between :min and :max characters."
+    },
+    "boolean": "The :attribute field must be true or false.",
+    "date": "The :attribute is not a valid date.",
+    "different": "The :attribute and :other must be different.",
+    "digits": "The :attribute must be :digits digits.",
+    "digits_between": "The :attribute must be between :min and :max digits.",
+    "email": "The :attribute must be a valid email address.",
+    "exists": "The selected :attribute is invalid.",
+    "file": "The :attribute must be a file.",
+    "image": "The :attribute must be an image.",
+    "in": "The selected :attribute is invalid.",
+    "in_array": "The :attribute field does not exist in :other.",
+    "integer": "The :attribute must be an integer.",
+    "ip": "The :attribute must be a valid IP address.",
+    "ipv4": "The :attribute must be a valid IPv4 address.",
+    "ipv6": "The :attribute must be a valid IPv6 address.",
+    "json": "The :attribute must be a valid JSON string.",
+    "max":
+    {
+        "number": "The :attribute may not be greater than :max.",
+        "file": "The :attribute may not be greater than :max kilobytes.",
+        "text": "The :attribute may not be greater than :max characters.",
+        "array": "The :attribute may not have more than :max items.",
+        "password": "The :attribute must be between :min and :max characters."
+    },
+    "mimes": "The :attribute must be a file of type: :values.",
+    "mimetypes": "The :attribute must be a file of type: :values.",
+    "min":
+    {
+        "number": "The :attribute must be at least :min.",
+        "file": "The :attribute must be at least :min kilobytes.",
+        "text": "The :attribute must be at least :min characters.",
+        "array": "The :attribute must have at least :min items.",
+        "password": "The :attribute must be between :min and :max characters."
+    },
+    "numeric": "The :attribute must be a number.",
+    "regex": "The :attribute format is invalid.",
+    "required": "The :attribute field is required.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "match": "The :attribute and :other must match.",
+    "size":
+    {
+        "number": "The :attribute must be :size.",
+        "file": "The :attribute must be :size kilobytes.",
+        "text": "The :attribute must be :size characters.",
+        "array": "The :attribute must contain :size items."
+    },
+    "string": "The :attribute must be a string.",
+    "uploaded": "The :attribute failed to upload.",
+    "tel" : "The :attribute number must be between :min and :max digits."
+}

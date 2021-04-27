@@ -1,0 +1,65 @@
+{
+    "katakana": "chữ katakana không đúng.",
+    "url": "Liên kết :attribute không hợp lệ.",
+    "alpha": ":attribute chỉ chấp nhận ký tự alpha.",
+    "alpha_dash": ":attribute chỉ chấp nhận chữ cái, số, -.",
+    "alpha_num": ":attribute chỉ chấp nhận chữ cái và số.",
+    "array": ":attribute phải là một mảng.",
+    "between":
+    {
+        "number": ":attribute phải thuộc khoảng :min và :max.",
+        "file": ":attribute phải thuộc khoảng :min và :max kilobytes.",
+        "text": ":attribute phải thuộc khoảng :min và :max ký tự.",
+        "array": ":attribute phải thuộc khoảng :min và :max phần tử.",
+        "password": ":attribute phải thuộc khoảng :min và :max ký tự."
+    },
+    "boolean": ":attribute phải có giá trị true hoặc false.",
+    "date": ":attribute không phải là ngày hợp lệ.",
+    "different": ":attribute và :other phải khác nhau.",
+    "digits": ":attribute phải có :digits chữ số.",
+    "digits_between": ":attribute phải thuộc khoảng :min và :max chữ số.",
+    "email": ":attribute phải là một địa chỉ email hợp lệ.",
+    "exists": "Giá trị được chọn :attribute không hợp lệ.",
+    "file": ":attribute phải là một tập tin.",
+    "image": ":attribute phải là một hình ảnh.",
+    "in": "Giá trị được chọn :attribute không hợp lệ.",
+    "in_array": ":attribute không tồn tại trong :other.",
+    "integer": ":attribute phải là một số nguyên.",
+    "ip": ":attribute phải là một địa chỉ IP hợp lệ.",
+    "ipv4": ":attribute phải là một địa chỉ IPv4 hợp lệ.",
+    "ipv6": ":attribute phải là một địa chỉ IPv6 hợp lệ.",
+    "json": ":attribute phải là một chuỗi JSON hợp lệ.",
+    "max":
+    {
+        "number": ":attribute tối đa là :max.",
+        "file": ":attribute tối đa là :max kilobytes.",
+        "text": ":attribute tối đa là :max ký tự.",
+        "array": ":attribute tối đa là :max phần tử.",
+        "password": ":attribute tối đa :max ký tự."
+    },
+    "mimes": ":attribute must be a file of type: :values.",
+    "mimetypes": ":attribute must be a file of type: :values.",
+    "min":
+    {
+        "number": ":attribute phải ít nhất là :min.",
+        "file": ":attribute phải có ít nhất là :min kilobytes.",
+        "text": ":attribute phải có ít nhất là :min ký tự.",
+        "array": ":attribute phải có ít nhất là :min phần tử.",
+        "password": ":attribute phải có ít nhất là :min ký tự."
+    },
+    "numeric": ":attribute phải là một số hợp lệ.",
+    "regex": ":attribute không đúng định dạng.",
+    "required": ":attribute chưa nhập.",
+    "required_if": ":attribute được yêu cầu khi :other có giá trị là :value.",
+    "match": ":attribute và :other phải giống nhau.",
+    "size":
+    {
+        "number": ":attribute phải có :size.",
+        "file": ":attribute phải là :size kilobytes.",
+        "text": ":attribute phải là :size ký tự.",
+        "array": ":attribute phải chứa :size phần tử."
+    },
+    "string": ":attribute phải là một chuỗi.",
+    "uploaded": ":attribute không thể tải lên.",
+    "tel" : ":attribute phải thuộc khoảng :min và :max chữ số."
+}

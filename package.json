@@ -1,0 +1,59 @@
+{
+  "_from": "form-submit-vld",
+  "_id": "form-submit-vld@1.1.3",
+  "_inBundle": false,
+  "_integrity": "sha512-36gKY5ZG4q0Y08SVerI5dpTsOq2+EjXu/HrMH/ntyzZd9N0qOSB3IYGDkS5IM8/byng365cXx7fqr9YXMtSaBQ==",
+  "_location": "/form-submit-vld",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "form-submit-vld",
+    "name": "form-submit-vld",
+    "escapedName": "form-submit-vld",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/form-submit-vld/-/form-submit-vld-1.1.3.tgz",
+  "_shasum": "a7e4f19980a12ee6c63968f27036062523533e70",
+  "_spec": "form-submit-vld",
+  "_where": "D:\\xampp\\htdocs\\test",
+  "author": {
+    "name": "Quang Dung"
+  },
+  "bugs": {
+    "url": "https://github.com/quangdung285/SubmitVLD/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-javascript-obfuscator": "^1.1.4",
+    "gulp-jsmin": "^0.1.5"
+  },
+  "deprecated": false,
+  "description": "form submit validate",
+  "devDependencies": {
+    "browser-sync": "^2.26.14"
+  },
+  "homepage": "https://github.com/quangdung285/SubmitVLD#readme",
+  "keywords": [
+    "validate",
+    "form"
+  ],
+  "license": "ISC",
+  "main": "gulpfile.js",
+  "name": "form-submit-vld",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quangdung285/SubmitVLD.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.3"
+}

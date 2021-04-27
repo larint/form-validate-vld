@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+
+<body>
+    <form action="action.php" method="POST" id="form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address confirm</label>
+                        <input type="text" class="form-control" name="match_email">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight</label>
+                        <input type="number" class="form-control" name="weight">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Url</label>
+                        <input type="text" class="form-control" name="url">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Quanlity</label>
+                        <input type="number" class="form-control" name="quanlity">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phone">Address</label>
+                        <input type="text" class="form-control" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleSelect1">Age select</label>
+                        <select class="form-control" name="age">
+                            <option></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea">Message textarea</label>
+                        <textarea class="form-control" name="message" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input type="file" class="form-control-file" name="image">
+                    </div>
+                    <fieldset class="form-group">
+                        <legend>Gender</legend>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender1"
+                                    value="Male"> Male
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender2"
+                                    value="Female"> Female
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender3"
+                                    value="Other"> Other
+                            </label>
+                        </div>
+                    </fieldset>
+                    <div class="form-check">
+                        <fieldset class="form-group">
+                            <legend>Array checkbox</legend>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="bio[]" id="optionsRadiosBio1"
+                                        value="Game"> Game
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="bio[]" id="optionsRadiosBio2"
+                                        value="Football"> Football
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="bio[]" id="optionsRadiosBio3"
+                                        value="Music"> Music
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form-check">
+                        <fieldset class="form-group">
+                            <legend>Single checkbox</legend>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="remember_me"
+                                        value="Remember me"> Remember me
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script id="vld" type="text/javascript" src="dist/form.submit.vld.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#form').submitVld({
+                rules: {
+                    email: 'required|email|match',
+                    password: 'required|min:3',
+                    age: 'required',
+                    message: 'required|string',
+                    image: 'required|image|between:100,200',
+                    gender: 'required',
+                    weight: 'required|min:2|max:15',
+                    phone: 'required|tel:10,15',
+                    url: 'url',
+                    quanlity: 'between:10,30',
+                    address: 'regex:^[a-z0-9\,\. ]+$',
+                    remember_me: 'required',
+                    bio: 'array_required',
+                },
+                messages: {
+                    email: {
+                        required: ':attribute cannot empty.'
+                    },
+                    password: {
+                        required: 'Password cannot empty.',
+                    },
+                    age: {
+                        required: 'Age is required.'
+                    },
+                    image: {
+                        required: 'Image is required.',
+                    },
+                    gender: {
+                        required: 'Gender is required.'
+                    },
+                    weight: {
+                        min: 'Weight must be at least :min.'
+                    },
+                    remember_me: {
+                        required: 'Remember me is required.'
+                    },
+                    bio: {
+                        array_required: 'Array checkbox is required.'
+                    },
+                },
+                attributes: {
+                    email: 'Email',
+                    password: 'Password',
+                    message: 'Message',
+                }
+            }, {
+                lang: 'en'
+            });
+        })
+    </script>
+</body>
+
+</html>

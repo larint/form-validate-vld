@@ -1,0 +1,6 @@
+node_modules
+zbuild
+launch.json
+.vscode
+*.log
+.env-heroku
