@@ -1,21 +1,12 @@
-# SubmitVLD
+# Form-valdiate-vld
 
-Plugin validate form data using jquery. This is not a full version.
-Plugin dùng để validate form sử dụng jquery. Đây chưa phải bản đầy đủ do còn thiếu một số hàm validate
-.
+Plugin validate form data using jquery. 
+
 ## How to use?
-## English and Vietnam instructions:
 
-add this script after jquery:
-Thêm thẻ script vào head, lưu ý thêm sau thẻ jquery:
-[<script id="vld" type="text/javascript" src="dist/form.submit.vld.min.js"></script>](dist/form.submit.vld.min.js)
-
-Update: add callback for validate.
-
-Use as below:
-Sử dụng như sau:
-
+* add this script after jquery tag
 ```
+<script id="vld" type="text/javascript" src="dist/form.submit.vld.min.js"></script>
 $(document).ready(function() {
     $('#form').submitVld({
         rules: {
@@ -55,7 +46,7 @@ $(document).ready(function() {
     });
 });
 ```
-using call back for input for example:
+* using call back for input for example:
 ```
 bio: function() {
     if ($('#optionsRadiosBio1').is(":checked")) {
@@ -65,11 +56,8 @@ bio: function() {
     return false;
 },
 ```
-If no language is specified, the plugin will use English to display the error.
-Nếu không chỉ định ngôn ngữ cho plugin, thì sẽ tự động lấy ngôn ngữ mặc định là tiếng anh.
-For exmaple: you can specify the vietnamese language for the plugin as follows:
-Ví dụ: chỉ định ngôn ngữ tiếng việt như bên dưới:
-
+* If no language is specified, the plugin will use English to display the error.
+* For exmaple: you can specify the vietnamese language for the plugin as follows:
 ```
 $(document).ready(function() {
     $('#form').submitVld({
@@ -88,13 +76,9 @@ $(document).ready(function() {
 });
 ```
 
-The plugin will load the corresponding language json files in the "lang" directory.
-Plugin sẽ tự động load file ngôn ngữ trong thư mục lang tương ứng với tham số lang truyền vào plugin.
-You can ignore the parameters "messages" and "attributes" the plugin will automatically get the default values.
-Bạn có thể bỏ qua các tham số "mesages" và "attributes" của plugin, plugin sẽ lấy các gía trị mặc định để sử dụng.
-You can add other language json files to the lang directory, and only specify the language when passing into the plugin.
-Bạn có thể thêm các file json ngôn ngữ khác vào thư mục lang, và chỉ địn tên ngôn ngữ khi truyền vào plugin.
-
+* The plugin will load the corresponding language json files in the "lang" directory.
+* You can ignore the parameters "messages" and "attributes" the plugin will automatically get the default values.
+* You can add other language json files to the lang directory, and only specify the language when passing into the plugin.
 ```
 $(document).ready(function() {
     $('#form').submitVld({
@@ -115,9 +99,7 @@ $(document).ready(function() {
 });
 ```
 
-You can add the class name of the html tag showing the error.
-Bạn có thể chỉ định tên class của thẻ html hiển thị lỗi. Từ tên class này bạn có thể css lại cho phù hợp.
-
+* You can add the class name of the html tag showing the error.
 ```
 $(document).ready(function() {
     $('#form').submitVld({
@@ -139,15 +121,16 @@ $(document).ready(function() {
     },);
 });
 ```
-The error tag will look like below.
-Thẻ tag hiển thị lỗi sẽ như bên dưới.
-![demo](https://github.com/quangdung285/SubmitVLD/blob/master/form/image/tag_error.png)
 
-![demo](https://github.com/quangdung285/SubmitVLD/blob/master/form/image/vld.png)
+* The error tag will look like below.
+
+![demo](https://github.com/larint/form-validate-vld/tree/master/form/image/tag_error.png)
+
+![demo](https://github.com/larint/form-validate-vld/blob/master/form/image/vld.png)
 
 ## Authors
 
-* **QD**
+* **Quang Dung**
 
 ## License
 
