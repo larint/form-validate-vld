@@ -6,6 +6,11 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <style>
+        form {
+            padding: 50px 0px;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,7 +20,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" style="font-size:20px;">
                     </div>
                     <div class="form-group">
                         <label for="email">Email address confirm</label>
@@ -70,18 +75,15 @@
                     <fieldset class="form-group">
                         <legend>Gender</legend>
                         <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender1"
-                                    value="Male"> Male
-                            </label>
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender2"
-                                    value="Female"> Female
-                            </label>
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender3"
-                                    value="Other"> Other
-                            </label>
+                            <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender1"
+                                value="Male">
+                            <label class="label" for="optionsRadiosGender1">Male</label>
+                            <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender2"
+                                value="Female">
+                            <label class="label" for="optionsRadiosGender2">Female</label>
+                            <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender3"
+                                value="Other">
+                            <label class="label" for="optionsRadiosGender3">Other</label>
                         </div>
                     </fieldset>
                     <div class="form-check">
@@ -125,45 +127,45 @@
 
             $('#form').submitVld({
                 rules: {
-                    email: 'required|email|match',
-                    password: 'required|min:3',
-                    age: 'required',
-                    message: 'required|string',
-                    image: 'required|image|between:100,200',
+                    // email: 'required|email|match',
+                    // password: 'required|min:3',
+                    // age: 'required',
+                    // message: 'required|text',
+                    // image: 'required|image|between:100,200',
                     gender: 'required',
-                    weight: 'required|min:2|max:15',
-                    phone: 'required|tel:10,15',
-                    url: 'url',
-                    quanlity: 'between:10,30',
-                    address: 'regex:^[a-z0-9\,\. ]+$',
-                    remember_me: 'required',
-                    bio: 'array_required',
+                    // weight: 'required|min:2|max:15',
+                    // phone: 'required|tel:10,15',
+                    // url: 'url',
+                    // quanlity: 'between:10,30',
+                    // address: 'required|regex:^[a-z0-9\,\. ]+$',
+                    // remember_me: 'required',
+                    // bio: 'array_required',
                 },
                 messages: {
                     email: {
                         required: ':attribute cannot empty.'
                     },
                     password: {
-                        required: 'Password cannot empty.',
+                        required: 'Password cannot empty.'
                     },
-                    age: {
-                        required: 'Age is required.'
-                    },
-                    image: {
-                        required: 'Image is required.',
-                    },
-                    gender: {
-                        required: 'Gender is required.'
-                    },
+                    // age: {
+                    //     required: 'Age is required.'
+                    // },
+                    // image: {
+                    //     required: 'Image is required.',
+                    // },
+                    // gender: {
+                    //     required: 'Gender is required.'
+                    // },
                     weight: {
                         min: 'Weight must be at least :min.'
                     },
-                    remember_me: {
-                        required: 'Remember me is required.'
-                    },
-                    bio: {
-                        array_required: 'Array checkbox is required.'
-                    },
+                    // remember_me: {
+                    //     required: 'Remember me is required.'
+                    // },
+                    // bio: {
+                    //     array_required: 'Array checkbox is required.'
+                    // },
                 },
                 attributes: {
                     email: 'Email',
@@ -171,7 +173,8 @@
                     message: 'Message',
                 }
             }, {
-                lang: 'en'
+                lang: 'en',
+                // showerror: 'border'
             });
         })
     </script>

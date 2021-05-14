@@ -1,0 +1,65 @@
+{
+    "katakana" : "テキストカタカナが無効です。",
+    "url" : ":attributeは有効なURLではありません。",
+    "alpha" : ":attributeには文字のみを含めることができます。",
+    "alpha_dash" : ":attributeには、文字、数字、ダッシュのみを含めることができます。",
+    "alpha_num" : ":attributeには文字と数字のみを含めることができます。",
+    "array" : ":attributeは配列でなければなりません。",
+    "between" :
+    {
+        "number" : ":attributeは:minと:maxの間にある必要があります。",
+        "file" : ":attributeは:minから:maxキロバイトの間でなければなりません。",
+        "text" : ":attributeは:min文字と:max文字の間にある必要があります。",
+        "array" : ":attributeは:minと:maxの間にある必要があります。",
+        "password" : ":attributeは:min文字と:max文字の間にある必要があります。"
+    },
+    "boolean" : ":attributeフィールドはtrueまたはfalseである必要があります。",
+    "date" : ":attributeは有効な日付ではありません。",
+    "different" : ":attributeと:otherは異なっている必要があります。",
+    "digits" : " :属性は:数字数字でなければなりません。",
+    "digits_between" : ":attributeは:minと:maxの数字の間でなければなりません。",
+    "email" : ":attributeは有効なメールアドレスである必要があります。",
+    "exists" : "選択された:属性が無効です。",
+    "file" : ":attributeはファイルである必要があります。",
+    "image" : ":attributeは画像である必要があります。",
+    "in" : "選択した:属性が無効です。",
+    "in_array" : ":attributeフィールドは:otherに存在しません。",
+    "integer" : ":attributeは整数でなければなりません。",
+    "ip" : ":attributeは有効なIPアドレスである必要があります。",
+    "ipv4" : ":attributeは有効なIPv4アドレスである必要があります。",
+    "ipv6" : ":attributeは有効なIPv6アドレスである必要があります。",
+    "json" : ":attributeは有効なJSON文字列である必要があります。",
+    "max" :
+    {
+        "number" : ":attributeは:maxより大きくてはなりません。",
+        "file" : ":attributeは:maxキロバイトを超えることはできません。",
+        "text" : ":attributeは:max文字を超えることはできません。",
+        "array" : ":attributeには:maxを超えるアイテムを含めることはできません。",
+        "password" : ":attributeは:min文字と:max文字の間にある必要があります。"
+    },
+    "mimes" : ":attributeは次のタイプのファイルである必要があります:value。",
+    "mimetypes" : ":attributeはタイプ:valueのファイルである必要があります。",
+    "min" :
+    {
+        "number" : ":attributeは少なくとも:minである必要があります。",
+        "file" : ":attributeは少なくとも:minキロバイトでなければなりません。",
+        "text" : ":attributeは少なくとも:min文字である必要があります。",
+        "array" : ":attributeには少なくとも:minアイテムが必要です。",
+        "password" : ":attributeは:min文字と:max文字の間にある必要があります。"
+    },
+    "numeric" : ":attributeは数値でなければなりません。",
+    "regex" : ":attribute形式が無効です。",
+    "required" : ":attributeフィールドは必須です。",
+    "required_if" : ":otherが:valueの場合、:attributeフィールドは必須です。",
+    "match" : ":attributeと:otherは一致する必要があります。",
+    "size" :
+    {
+        "number" : ":attributeは:sizeである必要があります。",
+        "file" : ":attributeは:sizeキロバイトでなければなりません。",
+        "text" : ":attributeは:size文字である必要があります。",
+        "array" : ":attributeには:sizeアイテムが含まれている必要があります。"
+    },
+    "string" : ":attributeは文字列である必要があります。",
+    "uploaded" : ":attributeはアップロードに失敗しました。",
+    "tel" : ":attribute番号は:minから:max桁の間でなければなりません。"
+}

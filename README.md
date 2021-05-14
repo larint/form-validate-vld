@@ -124,7 +124,7 @@ $(document).ready(function() {
 
 * The error tag will look like below.
 
-![demo](https://github.com/larint/form-validate-vld/tree/master/form/image/tag_error.png)
+![demo](https://github.com/larint/form-validate-vld/blob/master/form/image/tag_error.png)
 
 ![demo](https://github.com/larint/form-validate-vld/blob/master/form/image/vld.png)
 

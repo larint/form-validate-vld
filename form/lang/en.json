@@ -35,17 +35,17 @@
         "file": "The :attribute may not be greater than :max kilobytes.",
         "text": "The :attribute may not be greater than :max characters.",
         "array": "The :attribute may not have more than :max items.",
-        "password": "The :attribute must be between :min and :max characters."
+        "password": "The :attribute may not be greater than :max characters."
     },
-    "mimes": "The :attribute must be a file of type: :values.",
-    "mimetypes": "The :attribute must be a file of type: :values.",
+    "mimes": "The :attribute must be a file of type: :value.",
+    "mimetypes": "The :attribute must be a file of type: :value.",
     "min":
     {
         "number": "The :attribute must be at least :min.",
         "file": "The :attribute must be at least :min kilobytes.",
         "text": "The :attribute must be at least :min characters.",
         "array": "The :attribute must have at least :min items.",
-        "password": "The :attribute must be between :min and :max characters."
+        "password": "The :attribute must be at least :min characters."
     },
     "numeric": "The :attribute must be a number.",
     "regex": "The :attribute format is invalid.",
@@ -59,7 +59,8 @@
         "text": "The :attribute must be :size characters.",
         "array": "The :attribute must contain :size items."
     },
-    "string": "The :attribute must be a string.",
+    "text": "The :attribute must be a string.",
     "uploaded": "The :attribute failed to upload.",
-    "tel" : "The :attribute number must be between :min and :max digits."
+    "tel" : "The :attribute number must be between :min and :max digits.",
+    "teljp" : "The phone number does not match the format xxxx-xxxx-xxxx."
 }

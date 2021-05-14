@@ -37,8 +37,8 @@
         "array": ":attribute tối đa là :max phần tử.",
         "password": ":attribute tối đa :max ký tự."
     },
-    "mimes": ":attribute must be a file of type: :values.",
-    "mimetypes": ":attribute must be a file of type: :values.",
+    "mimes": ":attribute must be a file of type: :value.",
+    "mimetypes": ":attribute must be a file of type: :value.",
     "min":
     {
         "number": ":attribute phải ít nhất là :min.",
