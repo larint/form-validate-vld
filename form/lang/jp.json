@@ -21,6 +21,7 @@
     "email" : ":attributeは有効なメールアドレスである必要があります。",
     "exists" : "選択された:属性が無効です。",
     "file" : ":attributeはファイルである必要があります。",
+    "mime_type": "ファイルの拡張子は:extである必要があります。",
     "image" : ":attributeは画像である必要があります。",
     "in" : "選択した:属性が無効です。",
     "in_array" : ":attributeフィールドは:otherに存在しません。",
@@ -35,7 +36,7 @@
         "file" : ":attributeは:maxキロバイトを超えることはできません。",
         "text" : ":attributeは:max文字を超えることはできません。",
         "array" : ":attributeには:maxを超えるアイテムを含めることはできません。",
-        "password" : ":attributeは:min文字と:max文字の間にある必要があります。"
+        "password" : ":attributeには:max文字より大きくすることはできません。"
     },
     "mimes" : ":attributeは次のタイプのファイルである必要があります:value。",
     "mimetypes" : ":attributeはタイプ:valueのファイルである必要があります。",
@@ -45,7 +46,7 @@
         "file" : ":attributeは少なくとも:minキロバイトでなければなりません。",
         "text" : ":attributeは少なくとも:min文字である必要があります。",
         "array" : ":attributeには少なくとも:minアイテムが必要です。",
-        "password" : ":attributeは:min文字と:max文字の間にある必要があります。"
+        "password" : ":attributeは少なくとも:min文字である必要があります。"
     },
     "numeric" : ":attributeは数値でなければなりません。",
     "regex" : ":attribute形式が無効です。",
@@ -61,5 +62,6 @@
     },
     "string" : ":attributeは文字列である必要があります。",
     "uploaded" : ":attributeはアップロードに失敗しました。",
-    "tel" : ":attribute番号は:minから:max桁の間でなければなりません。"
+    "tel" : ":attribute番号は:minから:max桁の間でなければなりません。",
+    "teljp" : "電話番号がxxxx-xxxx-xxxxの形式と一致しません。"
 }

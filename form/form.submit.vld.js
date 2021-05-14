@@ -48,11 +48,10 @@
                             if (/\:/.test(rule)) {
                                 methodValidate = rule.substr(0, rule.indexOf(':'));
                             }
-                            field = (methodValidate == 'array_required') ? $('input[name="' + nameField + '[]"]') : field;
 
                             if (validator[methodValidate]) {
                                 // must be check required
-                                if (rulesArray.includes('required')) {
+                                if (rulesArray.includes('required') || rulesArray.includes('array_required')) {
                                     let valid = validator[methodValidate](field, rule, nameField, options.messages, options.attributes);
 
                                     if (valid.hasError && errors.length == 0) {
@@ -60,7 +59,7 @@
                                     }
                                 }
                             } else {
-                                console.log('invalid [' + methodValidate + '] validate method, wrong method name.');
+                                alert('invalid [' + methodValidate + '] validate method, wrong method name.');
                             }
                         })
 
@@ -79,27 +78,23 @@
 
     function isValidOptionVld(form, options) {
         var nameIp = [];
-        form.find('input').each(function () {
-            nameIp.push($(this).attr('name'))
-        });
-        form.find('select').each(function () {
-            nameIp.push($(this).attr('name'))
-        });
-        form.find('textarea').each(function () {
-            nameIp.push($(this).attr('name'))
+        form.find('input, select, textarea').each(function () {
+            var name = $(this).attr('name').replace('[', '').replace(']', '');
+            nameIp.push(name);
         });
         for (const key in options.rules) {
             if (!nameIp.includes(key)) {
-                console.log('rules parameter [' + key + '] does not match the input name.');
+                alert('rules parameter [' + key + '] does not match the input name.');
                 return false
             }
         }
         for (const key in options.messages) {
             if (!nameIp.includes(key)) {
-                console.log('messages parameter [' + key + '] does not match the input name.');
+                alert('messages parameter [' + key + '] does not match the input name.');
                 return false
             }
         }
+
         return true
     }
 
@@ -181,7 +176,7 @@
         this.array_required = function (field, rule, nameField, messages, attributes) {
             field = $('input[name="' + nameField + '[]"]');
             let fieldVal = field.last().val(),
-                errorMsg = getErrorMsg(nameField, messages, attributes, 'required'),
+                errorMsg = getErrorMsg(nameField, messages, attributes, 'array_required'),
                 type = field.attr('type');
 
             if (type == 'checkbox') {
@@ -406,13 +401,26 @@
         };
 
         this.image = function (field, rule, nameField, messages, attributes) {
-            let errorMsg = getErrorMsg(nameField, messages, attributes, 'image');
-            let file = field[0].files[0],
+            var file = field[0].files[0],
                 type = file != null ? file.type : '',
                 typeImage = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/x-icon', 'image/svg+xml'];
+            var errorMsg = getErrorMsg(nameField, messages, attributes, 'image');
             return {
                 input: field,
                 hasError: $.inArray(type, typeImage) == -1,
+                errorMsg: errorMsg
+            };
+        };
+
+        this.mime_type = function (field, rule, nameField, messages, attributes) {
+            var file = field[0].files[0],
+                mimeType = rule.split(':')[1].split(','),
+                ext = file ? file.name.split('.').pop() : '';
+            var errorMsg = getErrorMsg(nameField, messages, attributes, 'mime_type');
+            errorMsg = errorMsg.replace(':ext', mimeType.join('|'));
+            return {
+                input: field,
+                hasError: !mimeType.includes(ext),
                 errorMsg: errorMsg
             };
         };

@@ -69,20 +69,21 @@
                         <textarea class="form-control" name="message" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
+                        <label for="exampleInputFile">Image input</label>
                         <input type="file" class="form-control-file" name="image">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input type="file" class="form-control-file" name="file">
                     </div>
                     <fieldset class="form-group">
                         <legend>Gender</legend>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender1"
-                                value="Male">
+                            <input type="radio" name="gender" id="optionsRadiosGender1" value="Male">
                             <label class="label" for="optionsRadiosGender1">Male</label>
-                            <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender2"
-                                value="Female">
+                            <input type="radio" name="gender" id="optionsRadiosGender2" value="Female">
                             <label class="label" for="optionsRadiosGender2">Female</label>
-                            <input type="radio" class="form-check-input" name="gender" id="optionsRadiosGender3"
-                                value="Other">
+                            <input type="radio" name="gender" id="optionsRadiosGender3" value="Other">
                             <label class="label" for="optionsRadiosGender3">Other</label>
                         </div>
                     </fieldset>
@@ -90,18 +91,12 @@
                         <fieldset class="form-group">
                             <legend>Array checkbox</legend>
                             <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="bio[]" id="optionsRadiosBio1"
-                                        value="Game"> Game
-                                </label>
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="bio[]" id="optionsRadiosBio2"
-                                        value="Football"> Football
-                                </label>
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="bio[]" id="optionsRadiosBio3"
-                                        value="Music"> Music
-                                </label>
+                                <input type="checkbox" name="bio[]" id="optionsRadiosBio1" value="Game">
+                                <label class="label" for="optionsRadiosBio1">Game</label>
+                                <input type="checkbox" name="bio[]" id="optionsRadiosBio2" value="Football">
+                                <label class="label" for="optionsRadiosBio2">Football</label>
+                                <input type="checkbox" name="bio[]" id="optionsRadiosBio3" value="Music">
+                                <label class="label" for="optionsRadiosBio3">Music</label>
                             </div>
                         </fieldset>
                     </div>
@@ -109,10 +104,8 @@
                         <fieldset class="form-group">
                             <legend>Single checkbox</legend>
                             <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="remember_me"
-                                        value="Remember me"> Remember me
-                                </label>
+                                <input type="checkbox" id="remember_me" name="remember_me" value="Remember me">
+                                <label for="remember_me">Remember me</label>
                             </div>
                         </fieldset>
                     </div>
@@ -127,45 +120,50 @@
 
             $('#form').submitVld({
                 rules: {
-                    // email: 'required|email|match',
-                    // password: 'required|min:3',
-                    // age: 'required',
-                    // message: 'required|text',
-                    // image: 'required|image|between:100,200',
+                    email: 'required|email|match',
+                    password: 'required|min:3',
+                    age: 'required',
+                    message: 'required|text',
+                    image: 'required|image|between:100,200',
+                    file: 'required|mime_type:csv,png|between:10,300',
                     gender: 'required',
-                    // weight: 'required|min:2|max:15',
-                    // phone: 'required|tel:10,15',
-                    // url: 'url',
-                    // quanlity: 'between:10,30',
-                    // address: 'required|regex:^[a-z0-9\,\. ]+$',
-                    // remember_me: 'required',
-                    // bio: 'array_required',
+                    weight: 'required|min:2|max:15',
+                    phone: 'required|tel:10,15',
+                    url: 'url',
+                    quanlity: 'between:10,30',
+                    address: 'required|regex:^[a-z0-9\,\. ]+$',
+                    remember_me: 'required',
+                    bio: 'array_required',
                 },
                 messages: {
                     email: {
-                        required: ':attribute cannot empty.'
+                        required: ':attribute cannot empty.',
+                        email: ':attribute not valid.'
                     },
                     password: {
                         required: 'Password cannot empty.'
                     },
-                    // age: {
-                    //     required: 'Age is required.'
-                    // },
-                    // image: {
-                    //     required: 'Image is required.',
-                    // },
-                    // gender: {
-                    //     required: 'Gender is required.'
-                    // },
+                    age: {
+                        required: 'Age is required.'
+                    },
+                    image: {
+                        required: 'Image is required.',
+                    },
+                    file: {
+                        between: 'File size must be between :min and :max kilobytes.',
+                    },
+                    gender: {
+                        required: 'Gender is required.'
+                    },
                     weight: {
                         min: 'Weight must be at least :min.'
                     },
-                    // remember_me: {
-                    //     required: 'Remember me is required.'
-                    // },
-                    // bio: {
-                    //     array_required: 'Array checkbox is required.'
-                    // },
+                    remember_me: {
+                        required: 'Remember me is required.'
+                    },
+                    bio: {
+                        array_required: 'Array checkbox is required.'
+                    },
                 },
                 attributes: {
                     email: 'Email',

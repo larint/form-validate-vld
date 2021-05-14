@@ -21,6 +21,7 @@
     "email": ":attribute phải là một địa chỉ email hợp lệ.",
     "exists": "Giá trị được chọn :attribute không hợp lệ.",
     "file": ":attribute phải là một tập tin.",
+    "mime_type": "Tập tin phải phần mở rộng là :ext.",
     "image": ":attribute phải là một hình ảnh.",
     "in": "Giá trị được chọn :attribute không hợp lệ.",
     "in_array": ":attribute không tồn tại trong :other.",
@@ -61,5 +62,6 @@
     },
     "string": ":attribute phải là một chuỗi.",
     "uploaded": ":attribute không thể tải lên.",
-    "tel" : ":attribute phải thuộc khoảng :min và :max chữ số."
+    "tel" : ":attribute phải thuộc khoảng :min và :max chữ số.",
+    "teljp" : "Số điện thoại phải có định dạng như sau xxxx-xxxx-xxxx."
 }
