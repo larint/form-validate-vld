@@ -19,14 +19,15 @@
 
             var form = $(this),
                 classErr = ('clserror' in formats) ? formats.clserror : defaultClassErr,
-                showErr = ('showerror' in formats) && defaultShowError.includes(formats.showerror) ? formats.showerror : defaultShowError[0],
-                jumpErr = ('jump_error' in formats) && formats.jump_error == true ? true : false;
+                showErr = ('showerror' in formats) && formats.showerror ? formats.showerror : defaultShowError[0],
+                jumpErr = ('jumperror' in formats) && formats.jumperror == true ? true : false,
+                levelErr = ('levelerror' in formats) ? formats.levelerror : {};
 
             form.submit((e) => {
                 if (!isValidOptionVld(form, options)) {
                     return false
                 }
-                resetErrorStyle();
+                resetErrorStyle(classErr);
                 var validator = new Validator();
                 var submit = true;
 
@@ -62,7 +63,7 @@
                         if (errors.length > 0) submit = false;
 
                         $.each(errors, (index, error) => {
-                            showError(error, classErr, showErr, jumpErr)
+                            showError(error, classErr, showErr, jumpErr, levelErr)
                         })
                     }
                 });
@@ -94,8 +95,8 @@
         return true
     }
 
-    function resetErrorStyle() {
-        $('.' + defaultClassErr).remove();
+    function resetErrorStyle(classErr) {
+        $('.' + classErr).remove();
         $('input').each(function () {
             var oldStyle = $(this).attr('style');
             if (oldStyle) {
@@ -105,19 +106,40 @@
         });
     }
 
-    function showError(error, classErr, showErr, jumpErr) {
+    function showError(error, classErr, showErr, jumpErr, levelErr) {
         var input = error.input;
-
-        if (showErr == defaultShowError[0]) {
+        var fieldName = input.attr('name').replace('[', '').replace(']', '');
+        if (showErr == defaultShowError[0]) { // show text error
             if (input.length > 1 && input.is(':radio')) {
-                input.parent().after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                if (fieldName in levelErr && levelErr[fieldName] > 0 && levelErr[fieldName] <= 4) {
+                    input.parents().eq(levelErr[fieldName]).after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                } else {
+                    input.parent().after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                }
             } else if (input.is(':checkbox')) {
-                input.parent().after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                if (fieldName in levelErr && levelErr[fieldName] > 0 && levelErr[fieldName] <= 4) {
+                    input.parents().eq(levelErr[fieldName]).after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                } else {
+                    input.parent().after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                }
             } else {
-                input.after($(`<div class="${classErr} www">${error.errorMsg}</div>`).css(styleError.text));
+                if (fieldName in levelErr && levelErr[fieldName] > 0 && levelErr[fieldName] <= 4) {
+                    input.parents().eq(levelErr[fieldName] - 1).after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                } else {
+                    input.after($(`<div class="${classErr}">${error.errorMsg}</div>`).css(styleError.text));
+                }
             }
-        } else if (showErr == defaultShowError[1]) {
-            input.css(styleError.border);
+        } else if (showErr == defaultShowError[1]) { // show border error
+            input.addClass(classErr);
+            if (input.attr('type') != 'file') {
+                input.css(styleError.border);
+            }
+        } else {
+            if (fieldName in levelErr && levelErr[fieldName] > 0 && levelErr[fieldName] <= 4) {
+                input.parents().eq(levelErr[fieldName] - 1).addClass(showErr);
+            } else {
+                input.addClass(showErr);
+            }
         }
 
         if (jumpErr) {

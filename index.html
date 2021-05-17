@@ -27,12 +27,19 @@
                         <input type="text" class="form-control" name="match_email">
                     </div>
                     <div class="form-group">
-                        <label for="weight">Weight</label>
-                        <input type="number" class="form-control" name="weight">
+                        <div>
+                            <div>
+                                <label for="weight">Weight</label>
+                                <input type="number" class="form-control" name="weight">
+                            </div>
+                            <span></span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" name="password">
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
@@ -76,17 +83,19 @@
                         <label for="exampleInputFile">File input</label>
                         <input type="file" class="form-control-file" name="file">
                     </div>
-                    <fieldset class="form-group">
-                        <legend>Gender</legend>
-                        <div class="form-check">
-                            <input type="radio" name="gender" id="optionsRadiosGender1" value="Male">
-                            <label class="label" for="optionsRadiosGender1">Male</label>
-                            <input type="radio" name="gender" id="optionsRadiosGender2" value="Female">
-                            <label class="label" for="optionsRadiosGender2">Female</label>
-                            <input type="radio" name="gender" id="optionsRadiosGender3" value="Other">
-                            <label class="label" for="optionsRadiosGender3">Other</label>
-                        </div>
-                    </fieldset>
+                    <div class="form-check">
+                        <fieldset class="form-group">
+                            <legend>Gender</legend>
+                            <div class="form-check">
+                                <input type="radio" name="gender" id="optionsRadiosGender1" value="Male">
+                                <label class="label" for="optionsRadiosGender1">Male</label>
+                                <input type="radio" name="gender" id="optionsRadiosGender2" value="Female">
+                                <label class="label" for="optionsRadiosGender2">Female</label>
+                                <input type="radio" name="gender" id="optionsRadiosGender3" value="Other">
+                                <label class="label" for="optionsRadiosGender3">Other</label>
+                            </div>
+                        </fieldset>
+                    </div>
                     <div class="form-check">
                         <fieldset class="form-group">
                             <legend>Array checkbox</legend>
@@ -172,7 +181,13 @@
                 }
             }, {
                 lang: 'en',
-                // showerror: 'border'
+                // showerror: 'text',
+                // jumperror : false,
+                // clserror: 'error',
+                // levelerror: {
+                //     weight: 2,
+                //     password: 1
+                // }
             });
         })
     </script>

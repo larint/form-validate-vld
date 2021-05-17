@@ -78,8 +78,12 @@ bio: function() {
     return false;
 },
 ```
-* If no language is specified, the plugin will use English to display the error.
-* you can specify the vietnamese, jappanese, english language for the plugin
+
+* you can specify the vietnamese, jappanese, english language for the plugin, default is english
+* display error: showerror: 'border' or 'text'. default is text
+* jump to the error location: jumperror: true or false. default is false
+* show error class location on tag html by the way showerror: 'any class name', along with setting levelerror: { }
+
 ```
 $(document).ready(function() {
     $('#form').submitVld({
@@ -93,7 +97,14 @@ $(document).ready(function() {
             ...
         }
     },{
-        lang: 'vi'
+        lang: 'en',
+        showerror: 'text',
+        jumperror : false,
+        clserror: 'error',
+        levelerror: {
+            weight: 2,
+            password: 1
+        }
     });
 });
 ```
