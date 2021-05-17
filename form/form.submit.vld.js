@@ -17,9 +17,7 @@
         submitVld: function (options, formats = {}) {
             loadLang(formats);
 
-            let form = $(this),
-                fields = form.find(':input:not(button)'),
-                action = form.attr('action'),
+            var form = $(this),
                 classErr = ('clserror' in formats) ? formats.clserror : defaultClassErr,
                 showErr = ('showerror' in formats) && defaultShowError.includes(formats.showerror) ? formats.showerror : defaultShowError[0],
                 jumpErr = ('jump_error' in formats) && formats.jump_error == true ? true : false;
@@ -29,21 +27,19 @@
                     return false
                 }
                 resetErrorStyle();
-                let validator = new Validator();
-                let params = form.serializeArray(),
-                    submit = true;
+                var validator = new Validator();
+                var submit = true;
 
                 $.each(options.rules, (nameField, rules) => {
                     if (typeof rules === 'function') {
                         submit = submit && rules();
                     } else {
-                        let field = form.find(`:input[name=${nameField}]`),
+                        var field = form.find(`:input[name=${nameField}]`),
                             rulesArray = rules.split('|'),
                             errors = [];
 
                         $.each(rulesArray, (index, rule) => {
-                            let methodValidate = rule,
-                                optionValidate;
+                            var methodValidate = rule;
 
                             if (/\:/.test(rule)) {
                                 methodValidate = rule.substr(0, rule.indexOf(':'));
@@ -52,7 +48,7 @@
                             if (validator[methodValidate]) {
                                 // must be check required
                                 if (rulesArray.includes('required') || rulesArray.includes('array_required')) {
-                                    let valid = validator[methodValidate](field, rule, nameField, options.messages, options.attributes);
+                                    var valid = validator[methodValidate](field, rule, nameField, options.messages, options.attributes);
 
                                     if (valid.hasError && errors.length == 0) {
                                         errors.push(valid);
@@ -152,11 +148,11 @@
 
     function Validator() {
         this.required = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'required'),
                 type = field.attr('type');
             if (type == 'radio') {
-                let checked = false;
+                var checked = false;
                 field.each(function (i, obj) {
                     if ($(obj).is(':checked')) {
                         checked = true;
@@ -175,12 +171,12 @@
 
         this.array_required = function (field, rule, nameField, messages, attributes) {
             field = $('input[name="' + nameField + '[]"]');
-            let fieldVal = field.last().val(),
+            var fieldVal = field.last().val(),
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'array_required'),
                 type = field.attr('type');
 
             if (type == 'checkbox') {
-                let checked = false;
+                var checked = false;
                 field.each(function (i, obj) {
                     if ($(obj).is(':checked')) {
                         checked = true;
@@ -262,7 +258,7 @@
         };
 
         this.katakana = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = /^[\u30A0-\u30FF]+$/,
                 errorMsg = existRule(messages, [nameField, 'katakana']) ? messages[nameField]['katakana'] : defValidMsg['katakana'];
             errorMsg = (nameField in attributes) ? errorMsg.replace(':attribute', attributes[nameField]) : errorMsg;
@@ -274,7 +270,7 @@
         };
 
         this.tel = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 between = rule.match(/\d+/g),
                 pattern = /^[\d\-]+$/,
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'tel');
@@ -289,7 +285,7 @@
         };
 
         this.teljp = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = /^(?:\d{10}|\d{2,5}-\d{3,4}-\d{3,4})$/, //12-3456-7890, 123-4567-8901
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'teljp');
             return {
@@ -311,7 +307,7 @@
         };
 
         this.alpha = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = /^[a-zA-Z]+$/,
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'alpha');
             return {
@@ -322,7 +318,7 @@
         };
 
         this.alpha_dash = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = /^[a-zA-Z0-9\-]+$/,
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'alpha_dash');
             return {
@@ -333,7 +329,7 @@
         };
 
         this.alpha_num = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = /^[a-zA-Z0-9]+$/,
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'alpha_num');
             return {
@@ -375,7 +371,7 @@
         };
 
         this.email = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]+)*$/,
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'email');
             return {
@@ -386,13 +382,13 @@
         };
 
         this.match = function (field, rule, nameField, messages, attributes) {
-            let nameFieldMatch = 'match_' + nameField;
-            let fieldMatch = $('input[name=' + nameFieldMatch + ']')
-            let fieldVal = field.val(),
+            var nameFieldMatch = 'match_' + nameField;
+            var fieldMatch = $('input[name=' + nameFieldMatch + ']')
+            var fieldVal = field.val(),
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'match');
             errorMsg = errorMsg.replace(':other', nameField);
 
-            let match_value = fieldMatch.val();
+            var match_value = fieldMatch.val();
             return {
                 input: fieldMatch,
                 hasError: !(match_value.trim() == fieldVal),
@@ -426,7 +422,7 @@
         };
 
         this.regex = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = rule.substr(rule.indexOf(':') + 1, rule.length),
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'regex');
             pattern = new RegExp(pattern);
@@ -438,7 +434,7 @@
         };
 
         this.text = function (field, rule, nameField, messages, attributes) {
-            let fieldVal = field.val(),
+            var fieldVal = field.val(),
                 pattern = /^[a-zA-Z0-9\s\.\-\,]+$/,
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'text');
             return {
@@ -450,7 +446,7 @@
     }
 
     function getErrorMsg(nameField, messages, attributes, rule, defaultError = '') {
-        let errorMsg = existRule(messages, [nameField, rule]) ? messages[nameField][rule] : (defaultError != '') ? defaultError : defValidMsg[rule];
+        var errorMsg = existRule(messages, [nameField, rule]) ? messages[nameField][rule] : (defaultError != '') ? defaultError : defValidMsg[rule];
         errorMsg = (attributes != undefined && nameField in attributes) ? errorMsg.replace(':attribute', attributes[nameField]) : errorMsg.replace(':attribute', nameField.toUpperCase());
         return errorMsg;
     }
