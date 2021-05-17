@@ -109,6 +109,19 @@ $(document).ready(function() {
 });
 ```
 
+* the example shows the 2nd level error class "dl-error" of the [weight] input.
+
+```
+{
+    lang: 'en',
+    showerror: 'dl-error',
+    levelerror: {
+        weight: 2,
+        password: 1
+    }
+}
+```
+
 * The plugin will load the corresponding language json files in the "lang" directory.
 * Can ignore the parameters "messages" and "attributes" the plugin will automatically get the default values.
 * Can add other language json files to the lang directory, and only specify the language when passing into the plugin.
