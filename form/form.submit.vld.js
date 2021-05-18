@@ -76,7 +76,8 @@
     function isValidOptionVld(form, options) {
         var nameIp = [];
         form.find('input, select, textarea').each(function () {
-            var name = $(this).attr('name').replace('[', '').replace(']', '');
+            var name = $(this).attr('name');
+            name = name ? name.replace('[', '').replace(']', '') : '';
             nameIp.push(name);
         });
         for (const key in options.rules) {
@@ -108,7 +109,8 @@
 
     function showError(error, classErr, showErr, jumpErr, levelErr) {
         var input = error.input;
-        var fieldName = input.attr('name').replace('[', '').replace(']', '');
+        var fieldName = input.attr('name');
+        fieldName = fieldName ? fieldName.replace('[', '').replace(']', '') : '';
         if (showErr == defaultShowError[0]) { // show text error
             if (input.length > 1 && input.is(':radio')) {
                 if (fieldName in levelErr && levelErr[fieldName] > 0 && levelErr[fieldName] <= 4) {
