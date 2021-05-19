@@ -23,13 +23,19 @@
                 jumpErr = ('jumperror' in formats) && formats.jumperror == true ? true : false,
                 levelErr = ('levelerror' in formats) ? formats.levelerror : {};
 
-            form.submit((e) => {
-                if (!isValidOptionVld(form, options)) {
-                    return false
+            form.submit(function () {
+                var novalidate = form.find(`input[name=novalidate]`).length;
+                if (novalidate == 1) {
+                    return true;
                 }
+
+                if (!isValidOptionVld(form, options)) {
+                    return false;
+                }
+
                 resetErrorStyle(classErr);
                 var validator = new Validator();
-                var submit = true;
+                var submit = true, jumpF = true;
 
                 $.each(options.rules, (nameField, rules) => {
                     if (typeof rules === 'function') {
@@ -56,14 +62,17 @@
                                     }
                                 }
                             } else {
-                                alert('invalid [' + methodValidate + '] validate method, wrong method name.');
+                                console.log('invalid [' + methodValidate + '] validate method, wrong method name.');
                             }
                         })
 
                         if (errors.length > 0) submit = false;
 
                         $.each(errors, (index, error) => {
-                            showError(error, classErr, showErr, jumpErr, levelErr)
+                            showError(error, classErr, showErr, jumpErr, levelErr);
+                            if (jumpF) {
+                                jumpF = jumpError(form, error, jumpErr);
+                            }
                         })
                     }
                 });
@@ -72,6 +81,19 @@
             });
         }
     });
+
+    function jumpError(form, error, jumpErr) {
+        if (jumpErr) {
+            var name = error.input.attr('name');
+            var el = form.find('#jp' + name + ',' + '.jp' + name);
+            el = (el.length == 0) ? form.find('*[data-jp=' + name + ']') : el;
+            el = (el.length == 0) ? error.input : el;
+            $([document.documentElement, document.body]).animate({
+                scrollTop: el.offset().top
+            }, 100);
+        }
+        return false;
+    }
 
     function isValidOptionVld(form, options) {
         var nameIp = [];
@@ -82,13 +104,13 @@
         });
         for (const key in options.rules) {
             if (!nameIp.includes(key)) {
-                alert('rules parameter [' + key + '] does not match the input name.');
+                console.log('rules parameter [' + key + '] does not match the input name.');
                 return false
             }
         }
         for (const key in options.messages) {
             if (!nameIp.includes(key)) {
-                alert('messages parameter [' + key + '] does not match the input name.');
+                console.log('messages parameter [' + key + '] does not match the input name.');
                 return false
             }
         }
@@ -142,12 +164,6 @@
             } else {
                 input.addClass(showErr);
             }
-        }
-
-        if (jumpErr) {
-            $([document.documentElement, document.body]).animate({
-                scrollTop: input.offset().top
-            }, 100);
         }
     }
 

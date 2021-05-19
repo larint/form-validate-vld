@@ -4,7 +4,7 @@ Plugin validate form data using jquery.
 
 ## How to use?
 
-* add this script after jquery tag
+* add this script after jquery tag,
 
 ```
 <script id="vld" type="text/javascript" src="dist/form.submit.vld.min.js"></script>
@@ -82,7 +82,6 @@ bio: function() {
 * you can specify the vietnamese, jappanese, english language for the plugin, default is english
 * display error: showerror: 'border' or 'text'. default is text
 * jump to the error location: jumperror: true or false. default is false
-* show error class location on tag html by the way showerror: 'any class name', along with setting levelerror: { }
 
 ```
 $(document).ready(function() {
@@ -107,6 +106,18 @@ $(document).ready(function() {
         }
     });
 });
+```
+
+* show error class location on tag html by the way set showerror: 'any class name', along with setting levelerror: { }
+
+```
+{
+    showerror: 'any-class',
+    levelerror: {
+        weight: 2, // parent tag level
+        password: 1 // parent tag level
+    }
+}
 ```
 
 * the example shows the 2nd level error class "dl-error" of the [weight] input.
@@ -167,6 +178,22 @@ $(document).ready(function() {
         clserror: 'name_of_class'
     },);
 });
+```
+
+* If you don't want the plugin to check validate form, add an input tag named "novalidate" into the form tag.
+
+```
+<input type="hidden" name="novalidate">
+```
+
+* Customize the setting to jump to the error location, add attributes for tags data-jp="name tag input", or set id="jpxxx", class="jpxxx", xxx is the name of the input tag.
+* ex: id="jpemail" or class="jpemail" or data-jp="email"
+
+```
+<div class="form-group">
+    <label for="email" id="jpemail" class="jpemail" data-jp="email">Email address</label>
+    <input type="text" class="form-control" name="email">
+</div>
 ```
 
 * The error tag will look like below.
