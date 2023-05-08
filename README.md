@@ -26,6 +26,8 @@ $(document).ready(function () {
             address: 'required|regex:^[a-z0-9\,\. ]+$',
             remember_me: 'required',
             bio: 'array_required',
+            date: 'required|date',
+            alpha: 'required|alpha'
         },
         messages: {
             email: {
