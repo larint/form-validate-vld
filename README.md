@@ -1,10 +1,11 @@
 # Form-valdiate-vld
 
-Plugin validate form data using jquery. 
+Plugin validate form data using jquery.
 
 ## How to use?
 
-* add this script after jquery tag,
+- add this script after jquery tag,
+- Note: validate only checks when required parameter is declared in "rules"
 
 ```
 <script id="vld" type="text/javascript" src="dist/form.submit.vld.min.js"></script>
@@ -68,7 +69,7 @@ $(document).ready(function () {
 });
 ```
 
-* Customize input validation method using callback function.
+- Customize input validation method using callback function.
 
 ```
 bio: function() {
@@ -79,9 +80,9 @@ bio: function() {
 },
 ```
 
-* you can specify the vietnamese, jappanese, english language for the plugin, default is english
-* display error: showerror: 'border' or 'text'. default is text
-* jump to the error location: jumperror: true or false. default is false
+- you can specify the vietnamese, jappanese, english language for the plugin, default is english
+- display error: showerror: 'border' or 'text'. default is text
+- jump to the error location: jumperror: true or false. default is false
 
 ```
 $(document).ready(function() {
@@ -108,7 +109,7 @@ $(document).ready(function() {
 });
 ```
 
-* show error class location on tag html by the way set showerror: 'any class name', along with setting levelerror: { }
+- show error class location on tag html by the way set showerror: 'any class name', along with setting levelerror: { }
 
 ```
 {
@@ -120,7 +121,7 @@ $(document).ready(function() {
 }
 ```
 
-* the example shows the 2nd level error class "dl-error" of the [weight] input.
+- the example shows the 2nd level error class "dl-error" of the [weight] input.
 
 ```
 {
@@ -133,9 +134,10 @@ $(document).ready(function() {
 }
 ```
 
-* The plugin will load the corresponding language json files in the "lang" directory.
-* Can ignore the parameters "messages" and "attributes" the plugin will automatically get the default values.
-* Can add other language json files to the lang directory, and only specify the language when passing into the plugin.
+- The plugin will load the corresponding language json files in the "lang" directory.
+- Can ignore the parameters "messages" and "attributes" the plugin will automatically get the default values.
+- Can add other language json files to the lang directory, and only specify the language when passing into the plugin.
+
 ```
 $(document).ready(function() {
     $('#form').submitVld({
@@ -156,7 +158,7 @@ $(document).ready(function() {
 });
 ```
 
-* You can add the class name of the html tag showing the error.
+- You can add the class name of the html tag showing the error.
 
 ```
 $(document).ready(function() {
@@ -180,14 +182,14 @@ $(document).ready(function() {
 });
 ```
 
-* If you don't want the plugin to check validate form, add an input tag named "novalidate" into the form tag.
+- If you don't want the plugin to check validate form, add an input tag named "novalidate" into the form tag.
 
 ```
 <input type="hidden" name="novalidate">
 ```
 
-* Customize the setting to jump to the error location, add attributes for tags data-jp="name tag input", or set id="jpxxx", class="jpxxx", xxx is the name of the input tag.
-* ex: id="jpemail" or class="jpemail" or data-jp="email"
+- Customize the setting to jump to the error location, add attributes for tags data-jp="name tag input", or set id="jpxxx", class="jpxxx", xxx is the name of the input tag.
+- ex: id="jpemail" or class="jpemail" or data-jp="email"
 
 ```
 <div class="form-group">
@@ -196,7 +198,7 @@ $(document).ready(function() {
 </div>
 ```
 
-* The error tag will look like below.
+- The error tag will look like below.
 
 ![demo](https://github.com/larint/form-validate-vld/blob/master/form/image/tag_error.png)
 
@@ -204,7 +206,7 @@ $(document).ready(function() {
 
 ## Authors
 
-* **Quang Dung**
+- **Quang Dung**
 
 ## License
 

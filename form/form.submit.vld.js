@@ -337,7 +337,7 @@
 
         this.url = function (field, rule, nameField, messages, attributes) {
             var fieldVal = field.val();
-
+            console.log(fieldVal);
             var errorMsg = getErrorMsg(nameField, messages, attributes, 'url');
             return {
                 input: field,
@@ -477,6 +477,17 @@
             var fieldVal = field.val(),
                 pattern = /^[a-zA-Z0-9\s\.\-\,]+$/,
                 errorMsg = getErrorMsg(nameField, messages, attributes, 'text');
+            return {
+                input: field,
+                hasError: !pattern.test(fieldVal),
+                errorMsg: errorMsg
+            };
+        };
+
+        this.date = function (field, rule, nameField, messages, attributes) {
+            var fieldVal = field.val(),
+                pattern = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/,
+                errorMsg = getErrorMsg(nameField, messages, attributes, 'date');
             return {
                 input: field,
                 hasError: !pattern.test(fieldVal),

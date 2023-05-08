@@ -42,9 +42,9 @@ gulp.task('watch', function () {
         }
     });
 
-    gulp.watch('./form/**/*.js', gulp.series('minjs', 'minob'));
+    gulp.watch('./form/**/*.js', gulp.series('minjs', 'minob'))
+        .on('change', browserSync.reload);
     gulp.watch("./*.html").on('change', browserSync.reload);
-    gulp.watch("./form/**/*.js").on('change', browserSync.reload);
 });
 
 gulp.task('default', gulp.series('cplang', 'minjs', 'minob', 'watch'));
