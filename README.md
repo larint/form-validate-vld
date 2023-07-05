@@ -100,6 +100,7 @@ $(document).ready(function() {
         }
     },{
         lang: 'en',
+        liveCheck: true,
         showerror: 'text',
         jumperror : false,
         clserror: 'error',
