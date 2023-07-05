@@ -48,7 +48,7 @@
         "array": "The :attribute must have at least :min items.",
         "password": "The :attribute must be at least :min characters."
     },
-    "numeric": "The :attribute must be a number.",
+    "digit": "The :attribute must be a number.",
     "regex": "The :attribute format is invalid.",
     "required": "The :attribute field is required.",
     "required_if": "The :attribute field is required when :other is :value.",

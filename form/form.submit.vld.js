@@ -21,7 +21,8 @@
                 classErr = ('clserror' in formats) ? formats.clserror : defaultClassErr,
                 showErr = ('showerror' in formats) && formats.showerror ? formats.showerror : defaultShowError[0],
                 jumpErr = ('jumperror' in formats) && formats.jumperror == true ? true : false,
-                levelErr = ('levelerror' in formats) ? formats.levelerror : {};
+                levelErr = ('levelerror' in formats) ? formats.levelerror : {},
+                liveCheck = ('liveCheck' in formats) ? formats.liveCheck : false;
 
             form.submit(function () {
                 var novalidate = form.find(`input[name=novalidate]`).length;
@@ -37,7 +38,7 @@
                 var validator = new Validator();
                 var submit = true, jumpF = true;
 
-                $.each(options.rules, (nameField, rules) => {
+                $.each(options.rules, function (nameField, rules) {
                     if (typeof rules === 'function') {
                         submit = submit && rules();
                     } else {
@@ -45,7 +46,7 @@
                             rulesArray = rules.split('|'),
                             errors = [];
 
-                        $.each(rulesArray, (index, rule) => {
+                        $.each(rulesArray, function (index, rule) {
                             var methodValidate = rule;
 
                             if (/\:/.test(rule)) {
@@ -68,8 +69,9 @@
 
                         if (errors.length > 0) submit = false;
 
-                        $.each(errors, (index, error) => {
-                            showError(error, classErr, showErr, jumpErr, levelErr);
+                        $.each(errors, function (index, error) {
+                            var errClass = classErr + ' err-' + nameField;
+                            showError(error, errClass, showErr, jumpErr, levelErr);
                             if (jumpF) {
                                 jumpF = jumpError(form, error, jumpErr);
                             }
@@ -79,6 +81,69 @@
 
                 return submit;
             });
+
+            if (liveCheck) {
+                $.each(options.rules, function (nameField, rules) {
+                    var field = form.find(`:input[name=${nameField}]`);
+                    var matchField = form.find(`:input[name=match_${nameField}]`);
+                    if (matchField.length > 0) {
+                        matchField.blur(function () {
+                            field.trigger('blur');
+                        })
+                    }
+                    field.blur(function () {
+                        var novalidate = form.find(`input[name=novalidate]`).length;
+                        if (novalidate == 1) {
+                            return true;
+                        }
+
+                        if (!isValidOptionVld(form, options)) {
+                            return false;
+                        }
+
+                        resetErrorStyle(classErr, nameField);
+                        var validator = new Validator();
+                        var jumpF = true;
+
+                        if (typeof rules === 'function') {
+                            rules();
+                        } else {
+                            var field = form.find(`:input[name=${nameField}]`),
+                                rulesArray = rules.split('|'),
+                                errors = [];
+
+                            $.each(rulesArray, function (index, rule) {
+                                var methodValidate = rule;
+
+                                if (/\:/.test(rule)) {
+                                    methodValidate = rule.substr(0, rule.indexOf(':'));
+                                }
+
+                                if (validator[methodValidate]) {
+                                    // must be check required
+                                    if (rulesArray.includes('required') || rulesArray.includes('array_required')) {
+                                        var valid = validator[methodValidate](field, rule, nameField, options.messages, options.attributes);
+
+                                        if (valid.hasError && errors.length == 0) {
+                                            errors.push(valid);
+                                        }
+                                    }
+                                } else {
+                                    console.log('invalid [' + methodValidate + '] validate method, wrong method name.');
+                                }
+                            })
+
+                            $.each(errors, function (index, error) {
+                                var errClass = classErr + ' err-' + nameField;
+                                showError(error, errClass, showErr, jumpErr, levelErr);
+                                if (jumpF) {
+                                    jumpF = jumpError(form, error, jumpErr);
+                                }
+                            })
+                        }
+                    })
+                });
+            }
         }
     });
 
@@ -118,15 +183,19 @@
         return true
     }
 
-    function resetErrorStyle(classErr) {
-        $('.' + classErr).remove();
-        $('input').each(function () {
-            var oldStyle = $(this).attr('style');
-            if (oldStyle) {
-                oldStyle = oldStyle.replace('border: 1px solid red;', '')
-                $(this).attr('style', oldStyle);
-            }
-        });
+    function resetErrorStyle(classErr, nameField = null) {
+        if (nameField) {
+            $('.err-' + nameField).remove();
+        } else { // reset all
+            $('.' + classErr).remove();
+            $('input').each(function () {
+                var oldStyle = $(this).attr('style');
+                if (oldStyle) {
+                    oldStyle = oldStyle.replace('border: 1px solid red;', '')
+                    $(this).attr('style', oldStyle);
+                }
+            });
+        }
     }
 
     function showError(error, classErr, showErr, jumpErr, levelErr) {
@@ -168,22 +237,11 @@
     }
 
     function isValidUrl(url) {
-        var optUrl = {
-            exact: true,
-            strict: true
-        };
-
-        var protocol = `(?:(?:[a-z]+:)?//)${optUrl.strict ? '' : '?'}`;
-        var auth = '(?:\\S+(?::\\S*)?@)?';
-        var host = '(?:(?:[a-z\\u00a1-\\uffff0-9][-_]*)*[a-z\\u00a1-\\uffff0-9]+)';
-        var domain = '(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*';
-        var port = '(?::\\d{2,5})?';
-        var path = '(?:[/?#][^\\s"]*)?';
-        var regex = `(?:${protocol}|www\\.)${auth}(?:localhost|${host}${domain})${port}${path}`;
-
-        var regExp = optUrl.exact ? new RegExp(`(?:^${regex}$)`, 'i') : new RegExp(regex, 'ig');
-
-        return regExp.test(url);
+        var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/g);
+        if (res == null)
+            return false;
+        else
+            return true;
     }
 
     function Validator() {
@@ -262,8 +320,16 @@
             };
         };
 
-        this.numeric = function (field, rule, nameField, messages, attributes) {
-
+        this.digit = function (field, rule, nameField, messages, attributes) {
+            var fieldVal = field.val(),
+                pattern = /^\d$/,
+                errorMsg = existRule(messages, [nameField, 'digit']) ? messages[nameField]['digit'] : defValidMsg['digit'];
+            errorMsg = (nameField in attributes) ? errorMsg.replace(':attribute', attributes[nameField]) : errorMsg;
+            return {
+                input: field,
+                hasError: !pattern.exec(fieldVal),
+                errorMsg: errorMsg
+            };
         };
 
         this.max = function (field, rule, nameField, messages, attributes) {
@@ -337,7 +403,6 @@
 
         this.url = function (field, rule, nameField, messages, attributes) {
             var fieldVal = field.val();
-            console.log(fieldVal);
             var errorMsg = getErrorMsg(nameField, messages, attributes, 'url');
             return {
                 input: field,
@@ -512,7 +577,7 @@
         if (!$.isEmptyObject(formats) && ('lang' in formats)) {
             file = formats.lang;
         }
-        $.getJSON(`${dir}/lang/${file}.json`, (json) => {
+        $.getJSON(`${dir}/lang/${file}.json`, function (json) {
             defValidMsg = json;
         });
     }

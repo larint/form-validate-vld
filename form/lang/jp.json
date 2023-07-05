@@ -48,7 +48,7 @@
         "array" : ":attributeには少なくとも:minアイテムが必要です。",
         "password" : ":attributeは少なくとも:min文字である必要があります。"
     },
-    "numeric" : ":attributeは数値でなければなりません。",
+    "digit" : ":attributeは数値でなければなりません。",
     "regex" : ":attribute形式が無効です。",
     "required" : ":attributeフィールドは必須です。",
     "required_if" : ":otherが:valueの場合、:attributeフィールドは必須です。",

@@ -48,7 +48,7 @@
         "array": ":attribute phải có ít nhất là :min phần tử.",
         "password": ":attribute phải có ít nhất là :min ký tự."
     },
-    "numeric": ":attribute phải là một số hợp lệ.",
+    "digit": ":attribute phải là một số hợp lệ.",
     "regex": ":attribute không đúng định dạng.",
     "required": ":attribute chưa nhập.",
     "required_if": ":attribute được yêu cầu khi :other có giá trị là :value.",
